@@ -1,6 +1,6 @@
 package com.crimsonlogic.setexamples;
 
-import com.crimsonlogic.setexamples.exception.ElementNotFoundException;
+import com.crimsonlogic.setexamples.exceptionhandling.ElementNotFoundException;
 
 import java.util.HashSet;
 import java.util.Iterator;

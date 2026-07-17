@@ -1,9 +1,8 @@
 package com.crimsonlogic.listexamples.userdefinedobjectscolections;
 
-import com.crimsonlogic.listexamples.userdefinedobjectscolections.Exception.CargoShipNotFoundException;
+import com.crimsonlogic.listexamples.userdefinedobjectscolections.exceptionhandling.CargoShipNotFoundException;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.Scanner;
 
 public class CargoShipOperations {

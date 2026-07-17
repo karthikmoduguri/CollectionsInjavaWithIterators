@@ -1,4 +1,4 @@
-package com.crimsonlogic.setexamples.exception;
+package com.crimsonlogic.setexamples.exceptionhandling;
 
 public class ElementNotFoundException extends Exception{
     public  ElementNotFoundException(String message){

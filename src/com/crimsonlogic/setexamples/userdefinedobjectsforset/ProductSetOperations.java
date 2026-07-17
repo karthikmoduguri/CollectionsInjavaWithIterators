@@ -1,7 +1,6 @@
 package com.crimsonlogic.setexamples.userdefinedobjectsforset;
 
-import com.crimsonlogic.listexamples.userdefinedobjectscolections.CargoShip;
-import com.crimsonlogic.setexamples.exception.ElementNotFoundException;
+import com.crimsonlogic.setexamples.exceptionhandling.ElementNotFoundException;
 
 
 import java.util.HashSet;
