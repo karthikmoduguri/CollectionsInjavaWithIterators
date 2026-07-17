@@ -49,4 +49,286 @@ public class LibraryService {
         }
     }
 
+
+    public void searchBook(){
+
+        if(libraryMap.isEmpty()){
+            System.out.println("No Books Available");
+            return;
+        }
+
+        System.out.println("Enter Book ID");
+        int id=sc.nextInt();
+
+        try{
+
+            if(!libraryMap.containsKey(id)){
+                throw new LibraryException("Book Not Found");
+            }
+
+            System.out.println(libraryMap.get(id));
+
+        }
+        catch(LibraryException e){
+            System.out.println(e.getMessage());
+        }
+
+    }
+
+    public void updatePrice(){
+
+        if(libraryMap.isEmpty()){
+            System.out.println("No Books Available");
+            return;
+        }
+
+        System.out.println("Enter Book ID");
+        int id=sc.nextInt();
+        try{
+            if(!libraryMap.containsKey(id)){
+                throw new LibraryException("Book Not Found");
+            }
+
+            BookClass bc=libraryMap.get(id);
+
+            System.out.println("Enter New Price");
+            bc.setBookPrice(sc.nextDouble());
+
+            System.out.println("Price Updated Successfully");
+        }
+        catch(LibraryException e){
+            System.out.println(e.getMessage());
+        }
+
+    }
+
+    public void issueBook(){
+
+        if(libraryMap.isEmpty()){
+            System.out.println("No Books Available");
+            return;
+        }
+
+        System.out.println("Enter Book ID");
+        int id=sc.nextInt();
+
+        try{
+
+            if(!libraryMap.containsKey(id)){
+                throw new LibraryException("Book Not Found");
+            }
+
+            BookClass bc=libraryMap.get(id);
+
+            if(bc.isIssued()){
+                throw new LibraryException("Book Already Issued");
+            }
+
+            bc.setIssued(true);
+
+            System.out.println("Book Issued Successfully");
+
+        }
+        catch(LibraryException e){
+            System.out.println(e.getMessage());
+        }
+
+    }
+
+    public void returnBook(){
+        if(libraryMap.isEmpty()){
+            System.out.println("No Books Available");
+            return;
+        }
+        System.out.println("Enter Book ID");
+        int id=sc.nextInt();
+        try{
+            if(!libraryMap.containsKey(id)){
+                throw new LibraryException("Book Not Found");
+            }
+            BookClass bc=libraryMap.get(id);
+            if(!bc.isIssued()){
+                throw new LibraryException("Book is Already Available");
+            }
+            bc.setIssued(false);
+            System.out.println("Book Returned Successfully");
+        }
+        catch(LibraryException e){
+            System.out.println(e.getMessage());
+        }
+
+    }
+
+    public void displayBooks(){
+        try{
+            if(libraryMap.isEmpty()){
+                throw new LibraryException("No Books Available");
+            }
+            for(Map.Entry<Integer,BookClass> entry : libraryMap.entrySet()){
+                System.out.println(entry.getKey()+" "+entry.getValue());
+            }
+        }
+        catch(LibraryException e){
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void countBooks(){
+
+        try{
+
+            if(libraryMap.isEmpty()){
+
+                throw new LibraryException("No Books Available");
+
+            }
+
+            System.out.println("Total Books : "+libraryMap.size());
+
+        }
+        catch(LibraryException e){
+
+            System.out.println(e.getMessage());
+
+        }
+
+    }
+
+    public void clearLibrary(){
+
+        try{
+
+            if(libraryMap.isEmpty()){
+
+                throw new LibraryException("Library Already Empty");
+
+            }
+
+            libraryMap.clear();
+
+            System.out.println("Library Cleared Successfully");
+
+        }
+        catch(LibraryException e){
+
+            System.out.println(e.getMessage());
+
+        }
+
+    }
+
+    public void countCategoryWise(){
+
+        try{
+
+            if(libraryMap.isEmpty()){
+
+                throw new LibraryException("No Books Available");
+
+            }
+
+            HashMap<String,Integer> categoryMap = new HashMap<String,Integer>();
+
+            for(Map.Entry<Integer,BookClass> entry : libraryMap.entrySet()){
+
+                String category = entry.getValue().getCategory();
+
+                if(categoryMap.containsKey(category)){
+
+                    categoryMap.put(category,categoryMap.get(category)+1);
+
+                }
+                else{
+
+                    categoryMap.put(category,1);
+
+                }
+
+            }
+
+            System.out.println("Category Wise Book Count");
+
+            for(Map.Entry<String,Integer> entry : categoryMap.entrySet()){
+
+                System.out.println(entry.getKey()+" : "+entry.getValue());
+
+            }
+
+        }
+        catch(LibraryException e){
+
+            System.out.println(e.getMessage());
+
+        }
+
+    }
+
+    public void costliestBook(){
+
+        try{
+
+            if(libraryMap.isEmpty()){
+
+                throw new LibraryException("No Books Available");
+
+            }
+
+            BookClass costliest = null;
+
+            for(Map.Entry<Integer,BookClass> entry : libraryMap.entrySet()){
+
+                if(costliest==null || entry.getValue().getBookPrice()>costliest.getBookPrice()){
+
+                    costliest=entry.getValue();
+
+                }
+
+            }
+
+            System.out.println("Costliest Book");
+
+            System.out.println(costliest);
+
+        }
+        catch(LibraryException e){
+
+            System.out.println(e.getMessage());
+
+        }
+
+    }
+
+    public void removeBook(){
+
+        if(libraryMap.isEmpty()){
+            System.out.println("No Books Available");
+            return;
+        }
+
+        System.out.println("Enter Book ID to Remove");
+        int id = sc.nextInt();
+
+        try{
+
+            if(!libraryMap.containsKey(id)){
+
+                throw new LibraryException("Book Not Found");
+
+            }
+
+            libraryMap.remove(id);
+
+            System.out.println("Book Removed Successfully");
+
+        }
+        catch(LibraryException e){
+
+            System.out.println(e.getMessage());
+
+        }
+
+    }
+
+
+
 }
